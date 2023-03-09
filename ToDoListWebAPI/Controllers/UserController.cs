@@ -9,7 +9,7 @@ namespace ToDoListWebAPI.Controllers
     public class UserController : ControllerBase
     {
         [HttpGet]
-        public ActionResult<List<UserModel>> GetUsers()
+        public ActionResult<List<UserModel>> GetAllUsers()
         {
             return Ok();
         }

@@ -1,3 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using ToDoListWebAPI.Data;
+using ToDoListWebAPI.Repositories;
+using ToDoListWebAPI.Repositories.Interfaces;
+
 namespace ToDoListWebAPI
 {
     public class Program
@@ -12,6 +17,12 @@ namespace ToDoListWebAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddEntityFrameworkSqlServer()
+               .AddDbContext<TasksDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase")));
+
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+
 
             var app = builder.Build();
 
